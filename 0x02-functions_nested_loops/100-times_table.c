@@ -1,3 +1,8 @@
+/*
+ * File: 100-times_table.c
+ * Auth: Brennan D Baraban
+ */
+
 #include "main.h"
 
 /**
@@ -9,7 +14,7 @@ void print_times_table(int n)
 {
 	int num, mult, prod;
 
-	if (n <= 0 && n >= 15)
+	if (n >= 0 && n <= 15)
 	{
 		for (num = 0; num <= n; num++)
 		{
