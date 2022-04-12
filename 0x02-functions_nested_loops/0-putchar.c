@@ -1,19 +1,23 @@
 #include "main.h"
+
+
 /**
- * main - entry block
- * @void: no argument
- * Return: 0
- **/
+ * main - Entry point
+ *
+ * Return: nothing, return void
+ */
+
 int main(void)
 {
-        char assel[] = "_putchar";
+_putchar('_');
+_putchar('p');
+_putchar('u');
+_putchar('t');
+_putchar('c');
+_putchar('h');
+_putchar('a');
+_putchar('r');
+_putchar('\n');
 
-        int c;
-
-        for (c = 0; c < 8; C++)
-        {
-        _putchar(asse[c]);
-        }
-        _putchar('\n');
-        return (0)
+return (0);
 }
