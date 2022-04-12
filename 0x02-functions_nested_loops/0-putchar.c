@@ -1,26 +1,19 @@
-#include <stdio.h>
- 
-void print(long n)
+#include <main.h>
+/
+ * main - entry block
+ * @void: no argument
+ * Return: 0
+ /
+int main (void)
 {
-    // If number is smaller than 0, put a - sign
-    // and change number to positive
-    if (n < 0) {
-        putchar('-');
-        n = -n;
-    }
- 
-    // Remove the last digit and recur
-    if (n/10)
-        print(n/10);
- 
-    // Print the last digit
-    putchar(n%10 + '0');
-}
- 
-// Driver program to test above function
-int main()
-{
-    long int n = 12045;
-    print(n);
-    return 0;
+        char Assel[] = "_putchar";
+
+        int c;
+
+        for (c = 0; c < 8; C++)
+        {
+        _putchar(Asse[c]);
+        }
+        _putchar('\n');
+        return (0)
 }
