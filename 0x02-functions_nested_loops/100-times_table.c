@@ -1,66 +1,50 @@
 #include "main.h"
 
-int _putchar(char c);
-
 /**
- * print_times_table - print the times table until n
- *
- * @n: n times table
- *
- * Return: No return
+ * print_times_table - print multiplication table up to n
+ * @n: integer argument
  */
 
 void print_times_table(int n)
 {
-	int i;
-	int j;
+	int row;
+	int column;
+	int product;
 
 	if (n >= 0 && n <= 15)
 	{
-
-		for (i = 0; i <= n; i++)
+		for (row = 0; row <= n; row++)
 		{
-
-			for (j = 0; j <= n; j++)
+			for (column = 0; column <= n; column++)
 			{
-
-				if ((i * j) < 10)
+				product = (row * column);
+				if (column == 0)
+					_putchar('0' + product);
+				else
 				{
-					if (j != 0)
+					_putchar(',');
+					_putchar(' ');
+					if (product <= 9)
 					{
 						_putchar(' ');
 						_putchar(' ');
-						_putchar(' ');
+						_putchar('0' + product);
 					}
-					_putchar((j * i) + '0');
+					else if (product > 9 && product < 100)
+					{
+						_putchar(' ');
+						_putchar('0' + (product / 10));
+						_putchar('0' + (product % 10));
+					}
+					else if (product >= 100)
+					{
+						_putchar('0' + (product / 100));
+						_putchar('0' + ((product / 10) % 10));
+						_putchar('0' + (product % 10));
+					}
 				}
-
-				else if ((i * j) < 100)
-				{
-					_putchar(' ');
-					_putchar(' ');
-					_putchar((((j * i) / 10) % 10) + '0');
-					_putchar(((j * i) % 10) + '0');
-				}
-
-				else if ((i * j) < 1000)
-				{
-					_putchar(' ');
-					_putchar((((j * i) / 100) % 10) + '0');
-					_putchar((((j * i) / 10) % 10) + '0');
-					_putchar(((j * i) % 10) + '0');
-				}
-			if (j != (n))
-			{
-				_putchar(',');
 			}
-
-			}
-
-		_putchar('\n');
-
+			_putchar('\n');
 		}
-
 	}
-
 }
