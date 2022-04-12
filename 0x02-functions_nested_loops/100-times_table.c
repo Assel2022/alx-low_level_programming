@@ -1,47 +1,51 @@
-#include "main.h"
+#include "holberton.h"
+
 /**
- * print_times_table - prints the times table for n.
- * @n: The multiplication table requested.
- * Return: Nothing.
+ * print_times_table - prints times table
+ * @n : times table to use
+ * Return:void
  */
+
 void print_times_table(int n)
 {
-	int i, j, res;
 
-	if (!(n > 15 || n < 0))
+int a = 0, rep, b;
+
+if (n < 0 || n > 15)
+	return;
+
+while (a <= n)
+{
+	for (b = 0; b <= n; b++)
 	{
-		for (i = 0; i <= n; i++)
+		rep = a * b;
+		if (b == 0)
+			_putchar('0' + rep);
+		else if (rep < 10)
 		{
-			for (j = 0; j <= n; j++)
-			{
-				res = (i * j);
-				if (j != 0)
-				{
-					_putchar(',');
-					_putchar(' ');
-				}
-				if (res < 10 && j != 0)
-				{
-					_putchar(' ');
-					_putchar(' ');
-					_putchar((res % 10) + '0');
-				}
-				else if (res >= 10 && res < 100)
-				{
-					_putchar(' ');
-					_putchar((res / 10) + '0');
-					_putchar((res % 10) + '0');
-				}
-				else if (res >= 100 && j != 0)
-				{
-					_putchar((res / 100) + '0');
-					_putchar((res / 10) % 10 + '0');
-					_putchar((res % 10) + '0');
-				}
-				else
-					_putchar((res % 10) + '0');
-			}
-			_putchar('\n');
+			_putchar(' ');
+			_putchar(' ');
+			_putchar('0' + rep);
+		}
+		else if (rep < 100)
+		{
+			_putchar(' ');
+			_putchar('0' + rep / 10);
+			_putchar('0' + rep % 10);
+		}
+		else
+		{
+			_putchar('0' + rep / 100);
+			_putchar('0' + (rep - 100) / 10);
+			_putchar('0' + rep % 10);
+		}
+		if (b < n)
+		{
+			_putchar(',');
+			_putchar(' ');
 		}
 	}
+	_putchar('\n');
+	a++;
+}
 }
