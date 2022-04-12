@@ -1,16 +1,15 @@
 #include "main.h"
 
-int _putchar(char c);
-
 /**
- * print_times_table - print the times table until n
+ * main - check the code for Holberton School students.
  *
- * @n: n times table
- *
- * Return: No return
+ * Return: Always 0.
  */
-
-void print_times_table(int n)
+int main(void)
+{
+	print_times_table(2);
+	return (0);
+}
 {
 	int i;
 	int j;
