@@ -1,88 +1,85 @@
 #include "main.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 /**
- * strtow - char
- * @str: pointer to string params
- * Return: char
+ * copychars - copies chars to buffer
+ * @b: destination buffer
+ * @start: starting char pointer
+ * @stop: ending char pointer
  */
+void copychars(char *b, char *start, char *stop)
+{
+	while (start <= stop)
+		*b++ = *start++;
+	*b = 0;
+}
 
+/**
+ * wordcount - counts the number of words
+ * @str: the sentence string
+ *
+ * Return: int number of words
+ */
+int wordcount(char *str)
+{
+	int words = 0, in_word = 0;
+
+	while (1)
+	{
+		if (*str == ' ' || !*str)
+		{
+			if (in_word)
+				words++;
+			in_word = 0;
+			if (!*str)
+				break;
+		}
+		else
+			in_word++;
+		str++;
+	}
+	return (words);
+}
+
+/**
+ * strtow - splits sentence into words
+ * @str: the sentence string
+ *
+ * Return: pointer to string array
+ */
 char **strtow(char *str)
 {
-	int i = 0, j = 0, k = 0;
-	int len = 0, count = 0;
-	char **f, *col;
+	int words = 0, in_word = 0;
+	char **ret, *word_start;
 
-	if (!str || !*str)
-	{
+	if (!str || !*str || !wordcount(str))
 		return (NULL);
-	}
-
-	while (*(str + i))
+	ret = malloc(sizeof(char *) * (wordcount(str) + 1));
+	while (1)
 	{
-		if (*(str + i) != ' ')
+		if (*str == ' ' || !*str)
 		{
-			if (*(str + i + 1) == ' ' || *(str + i + 1) == 0)
+			if (in_word)
 			{
-				count += 1;
+				ret[words] = malloc(sizeof(char) * (in_word + 1));
+				if (!ret[words])
+				{
+					return (NULL);
+				}
+				copychars(ret[words], word_start, str - 1);
+				words++;
+				in_word = 0;
 			}
+			if (!*str)
+				break;
 		}
-		i++;
+		else
+		{
+			if (!in_word++)
+				word_start = str;
+		}
+		str++;
 	}
-
-	if (count == 0)
-	{
-		return (NULL);
-	}
-	count += 1;
-	f = malloc(sizeof(char *) * count);
-
-	if (!f)
-	{
-		return (NULL);
-	}
-	i = 0;
-
-	while (*str)
-	{
-		while (*str == ' ' && *str)
-		{
-			str++;
-		}
-		len = 0;
-
-		while (*(str + len) != ' ' && *(str + len))
-		{
-			len += 1;
-		}
-		len += 1;
-		col = malloc(sizeof(char) * len);
-
-		if (!col)
-		{
-			for (k = j - 1; k >= 0; k--)
-			{
-				free(f[k]);
-			}
-			free(f);
-			return (NULL);
-		}
-
-		for (k = 0; k < (len - 1);  k++)
-		{
-			*(col + k) = *(str++);
-		}
-		*(col + k) = '\0';
-		*(f + j) = col;
-
-		if (j < (count - 1))
-		{
-			j++;
-		}
-	}
-	*(f + j) = NULL;
-	return (f);
-} /*yes*/
-
-
+	ret[words] = 0;
+	return (ret);
+}
