@@ -81,6 +81,4 @@ char **strtow(char *str)
 	}
 	*(f + j) = NULL;
 	return (f);
-} /*yes*/
-
-
+}
