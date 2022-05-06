@@ -1,88 +1,57 @@
 #include <stdlib.h>
 #include "main.h"
-#include <stdio.h>
 
-int _atoi(char *s);
-int _strlen(char *s);
 /**
- * main - function with two arguments
- * @argc: argument count
- * @argv: argument value
+ * _calloc - allocate (`size' * `nmemb') bytes and set to 0
+ * @nmemb: number of elements
+ * @size: number of bytes per element
  *
- * Description: program that multiplies two positive numbers
- * Return: value
+ * Return: pointer to memory, or NULL if `nmemb' or `size' is 0 or malloc fails
  */
-int main(int argc, char *argv[])
+void *_calloc(unsigned int nmemb, unsigned int size)
 {
-	int count, len1, len2, temp1, temp2, *array, *result;
+	unsigned int i;
+	char *p;
 
-	if (argc != 3)
-	{
-		printf("Error\n");
-		exit (98);
-	}
-
-	len1 = _strlen(argv[1]);
-	len2 = _strlen(argv[2]);
-	t_len = len1 + len2 - 1;
-
-	array = malloc(sizeof(char) * (len1 + len2 + 1));
-	if (array == NULL)
+	if (size == 0 || nmemb == 0)
 		return (NULL);
-
-	len1 -= 1;
-	len2 -= 1;
-	for (count = 1; argv[count] != '\0', count++)
-	{
-		for (; argv[1][len1]; len1--)
-		{
-			temp1 = argv[1][len1 - 1] - '0';;
-		}
-		for (; argv[2][len2]; len2--)
-		{
-			temp2 = argv[2][len2 - 1] - '0';
-		}
-		for (; array[t_len] > 0
-		if ((temp1 * temp2) > 9)
-			array[
-	}
+	p = malloc(nmemb * size);
+	if (p == NULL)
+		return (NULL);
+	for (i = 0; i < nmemb * size; ++i)
+		p[i] = 0;
+	return (p);
 }
 
-int _atoi(char *s)
+/**
+ * _strdigit - check if string `s' is composed only of digits
+ * @s: string to check
+ *
+ * Return: 1 if true, 0 if false
+ */
+int _strdigit(char *s)
 {
-	int i, sign, numb;
-
-	i = 0;
-	sign = 1;
-	numb = 0;
-
-	while (s[i] != '\0')
+	if (*s == '-' || *s == '+')
+		++s;
+	while (*s)
 	{
-		if (s[i] == '-')
-			sign *= -1;
-		if (s[i] >= '0' && s[i] <= '9')
+		if (*s < '0' || *s > '9')
 		{
-			while (s[i] >= '0' && s[i] <= '9')
-			{
-				numb = (s[i] - '0') * sign + numb * 10;
-				i++;
-			}
-			break;
+			return (0);
 		}
-		i++;
+		++s;
 	}
-	return (numb);
+	return (1);
 }
 
-int _strlen(char *s)
+/**
+ * _puts - print string `s'
+ * @s: string to print
+ */
+void _puts(char *s)
 {
-	int i;
-
-	i = 0;
-	while (*(s + i) != '\0')
-	{
-		i++;
-	}
-	return (i);
+	while (*s)
+		_putchar(*(s++));
 }
+
 
