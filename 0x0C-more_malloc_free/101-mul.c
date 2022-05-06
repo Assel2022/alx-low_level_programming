@@ -1,61 +1,88 @@
 #include <stdlib.h>
-#include "main.h"
+#include "coding.h"
+#include <stdio.h>
 
+int _atoi(char *s);
+int _strlen(char *s);
 /**
- * _calloc - allocate (`size' * `nmemb') bytes and set to 0
- * @nmemb: number of elements
- * @size: number of bytes per element
+ * main - function with two arguments
+ * @argc: argument count
+ * @argv: argument value
  *
- * Return: pointer to memory, or NULL if `nmemb' or `size' is 0 or malloc fails
+ * Description: program that multiplies two positive numbers
+ * Return: value
  */
-void *_calloc(unsigned int nmemb, unsigned int size)
+int main(int argc, char *argv[])
 {
-	unsigned int i;
-	char *p;
+	int count, len1, len2, temp1, temp2, *array, *result;
 
-	if (size == 0 || nmemb == 0)
-		return (NULL);
-	p = malloc(nmemb * size);
-	if (p == NULL)
-		return (NULL);
-	for (i = 0; i < nmemb * size; ++i)
-		p[i] = 0;
-	return (p);
-}
-
-/**
- * _strdigit - check if string `s' is composed only of digits
- * @s: string to check
- *
- * Return: 1 if true, 0 if false
- */
-int _strdigit(char *s)
-{
-	if (*s == '-' || *s == '+')
-		++s;
-	while (*s)
+	if (argc != 3)
 	{
-		if (*s < '0' || *s > '9')
-		{
-			return (0);
-		}
-		++s;
+		printf("Error\n");
+		exit (98);
 	}
-	return (1);
+
+	len1 = _strlen(argv[1]);
+	len2 = _strlen(argv[2]);
+	t_len = len1 + len2 - 1;
+
+	array = malloc(sizeof(char) * (len1 + len2 + 1));
+	if (array == NULL)
+		return (NULL);
+
+	len1 -= 1;
+	len2 -= 1;
+	for (count = 1; argv[count] != '\0', count++)
+	{
+		for (; argv[1][len1]; len1--)
+		{
+			temp1 = argv[1][len1 - 1] - '0';;
+		}
+		for (; argv[2][len2]; len2--)
+		{
+			temp2 = argv[2][len2 - 1] - '0';
+		}
+		for (; array[t_len] > 0
+		if ((temp1 * temp2) > 9)
+			array[
+	}
 }
 
-/**
- * _puts - print string `s'
- * @s: string to print
- */
-void _puts(char *s)
+int _atoi(char *s)
 {
-	while (*s)
-		_putchar(*(s++));
+	int i, sign, numb;
+
+	i = 0;
+	sign = 1;
+	numb = 0;
+
+	while (s[i] != '\0')
+	{
+		if (s[i] == '-')
+			sign *= -1;
+		if (s[i] >= '0' && s[i] <= '9')
+		{
+			while (s[i] >= '0' && s[i] <= '9')
+			{
+				numb = (s[i] - '0') * sign + numb * 10;
+				i++;
+			}
+			break;
+		}
+		i++;
+	}
+	return (numb);
 }
 
-/**
- * rev_num_str - reverse a number string up to trailing zeros
- * @start: beginning of number
- * @end: end of number
+int _strlen(char *s)
+{
+	int i;
+
+	i = 0;
+	while (*(s + i) != '\0')
+	{
+		i++;
+	}
+	return (i);
+}
 
