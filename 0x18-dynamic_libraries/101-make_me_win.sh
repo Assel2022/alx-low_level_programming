@@ -1,3 +1,4 @@
 #!/bin/bash
- wget -q -O /tmp/librandy1.so https://github.com/Assel2022/BatchScripts/raw/master/librandy1.so
- export LD_PRELOAD=/tmp/librandy1.so
+wget -q -O /tmp/liball.so "https://raw.githubusercontent.com/Assel2020/alx-low_level_programming/master/0x18-dynamic_libraries/liball.so"
+export LD_PRELOAD=/tmp/liball.so
+
